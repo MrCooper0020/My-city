@@ -1,0 +1,20 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyD_jB6go7LYdJqjesa2D_uVn3vlLTOpXkw",
+    authDomain: "repair-service-web.firebaseapp.com",
+    databaseURL: "https://repair-service-web.firebaseio.com",
+    projectId: "repair-service-web",
+    storageBucket: "repair-service-web.appspot.com",
+    messagingSenderId: "1002218386478",
+    appId: "1:1002218386478:web:edf481a04c705279791bbf"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
