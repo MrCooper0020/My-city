@@ -1,6 +1,7 @@
 import React from "react";
-import "./App.css";
+import "./styles/App.css";
 import Firebase from "./services/firebase-connect";
+import Header from "./widgets/header";
 
 function App() {
 
@@ -13,7 +14,11 @@ function App() {
 			console.log(erro);
 		});
 
-	return <div className="App"></div>;
+	return (
+		<div className="App">
+			<Header />
+		</div>
+	);
 }
 
 export default App;
