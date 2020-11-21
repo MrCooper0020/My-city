@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import "../styles/header.css";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import { Redirect } from "react-router-dom";
 
 export default function Header() {
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -41,9 +42,10 @@ export default function Header() {
 						open={Boolean(anchorEl)}
 						onClose={handleClose}
 					>
-						<MenuItem onClick={handleClose}>Profile</MenuItem>
-						<MenuItem onClick={handleClose}>My account</MenuItem>
-						<MenuItem onClick={handleClose}>Logout</MenuItem>
+						<MenuItem onClick={() => <Redirect to="/home" />}>
+							Home
+						</MenuItem>
+						<MenuItem onClick={handleClose}>Sair</MenuItem>
 					</Menu>
 				</div>
 			</Toolbar>

@@ -1,23 +1,34 @@
 import React from "react";
 import "./styles/App.css";
-import Firebase from "./services/firebase-connect";
 import Header from "./widgets/header";
+import Login from "./pages/login";
+import Home from "./pages/home";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
 
-	Firebase.auth()
-		.signInWithEmailAndPassword("1117956@imed.edu.br", "123456")
-		.then((retorno) => {
-			console.log("Usuário Logado: " + retorno.user.uid);
-		})
-		.catch((erro) => {
-			console.log(erro);
-		});
+	const PrivateRoute = ({ component: Component, ...rest }) => {
+		return (
+			<Route
+				render={(props) => {
+					if (sessionStorage.getItem("token-key")) {
+						return <Component {...props} />;
+					} else {
+						return <Login />;
+					}
+				}}
+			/>
+		);
+	};
 
 	return (
-		<div className="App">
+		<BrowserRouter>
 			<Header />
-		</div>
+			<Switch>
+				<Route path="/" exact={true} component={Login} />
+				<PrivateRoute path="/home" component={Home} />
+			</Switch>
+		</BrowserRouter>
 	);
 }
 
