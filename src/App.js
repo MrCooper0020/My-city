@@ -2,8 +2,9 @@ import React from "react";
 import "./styles/App.css";
 import Header from "./widgets/header";
 import Login from "./pages/login";
-import Home from "./pages/home";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import FormProblems from "./pages/formProblems";
+import Home from "./pages/home";
 
 function App() {
 
@@ -25,8 +26,9 @@ function App() {
 		<BrowserRouter>
 			<Header />
 			<Switch>
-				<Route path="/" exact={true} component={Login} />
-				<PrivateRoute path="/home" component={Home} />
+				<Route path="/login" component={Login} />
+				<Route path="/" exact={true} component={Home} />
+				<PrivateRoute path="/add" component={FormProblems} />
 			</Switch>
 		</BrowserRouter>
 	);

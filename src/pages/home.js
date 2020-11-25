@@ -1,21 +1,25 @@
-import React from "react";
-import { Tabs, Tab, Grid } from "@material-ui/core";
+import React, { useState } from "react";
+import GoogleMapReact from "google-map-react";
 
 export default function Home() {
-	return (
-		<div>
-			<Grid item xs={12} sm={4}>
-				<Tabs
-					orientation="vertical"
-					variant="scrollable"
-					value={0}
-					aria-label="Vertical tabs example"
-				>
-					<Tab label="Problemas" />
-					<Tab label="Cadastro de novos problemas" />
-				</Tabs>
-			</Grid>
-			<Grid item xs={12} sm={8}></Grid>
+
+    const [defaultLocation, setDefaultLocation] = useState({
+		location: {
+			lat: -28.2630184,
+			lng: -52.4105743,
+		},
+		zoom: 12,
+	});
+
+    return (
+		<div style={{ height: "100vh", width: "100%" }}>
+			<GoogleMapReact
+				bootstrapURLKeys={{
+					key: "AIzaSyDvdkyqaq8Cu2fVp_9EQNNnhMoDmT-GXt4",
+				}}
+				defaultCenter={defaultLocation.location}
+				defaultZoom={defaultLocation.zoom}
+			></GoogleMapReact>
 		</div>
 	);
 }
