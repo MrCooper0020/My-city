@@ -5,6 +5,7 @@ import Login from "./pages/login";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import FormProblems from "./pages/formProblems";
 import Home from "./pages/home";
+import Contact from "./pages/contact";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
 				<Route path="/login" component={Login} />
 				<Route path="/" exact={true} component={Home} />
 				<PrivateRoute path="/add" component={FormProblems} />
+				<Route path="/contact" component={Contact} />
 			</Switch>
 		</BrowserRouter>
 	);

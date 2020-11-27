@@ -2,7 +2,7 @@ import React from "react";
 
 import {
 	TextField,
-	Button,
+	Fab,
 	Grid,
 	FormControl,
 	InputLabel,
@@ -20,7 +20,7 @@ export default function FormProblems() {
 	return (
 		<form style={{ margin: 10 }}>
 			<Grid item xs={12} style={{ marginBottom: 10, marginTop: 20 }}>
-				<h1>Cadastro de novo problema</h1>
+				<h1>Cadastro de um novo problema</h1>
 			</Grid>
 			<Grid item xs={12} style={{ marginBottom: 10, marginTop: 20 }}>
 				<TextField
@@ -40,43 +40,46 @@ export default function FormProblems() {
 					fullWidth
 				/>
 			</Grid>
-			<Grid xs={12} sm={6} style={{ marginBottom: 10 }}>
-				<FormControl variant="outlined" fullWidth>
-					<InputLabel id="importance-label">
-						Gravidade do problema
-					</InputLabel>
-					<Select
-						labelId="importance-label"
-						id="importance"
-						value={age}
-						onChange={handleChange}
-						label="Gravidade do Problema"
-					>
-						<MenuItem value={1}>Baixo</MenuItem>
-						<MenuItem value={2}>Medio</MenuItem>
-						<MenuItem value={3}>Grave</MenuItem>
-					</Select>
-				</FormControl>
-			</Grid>
-			<Grid xs={12} sm={6} style={{ marginBottom: 10 }}>
-				<TextField
-					id="local"
-					label="Localizacao"
-					variant="outlined"
-					fullWidth
-				/>
+			<Grid container spacing={2} style={{ marginBottom: 2 }}>
+				<Grid item xs={12} sm={4}>
+					<FormControl variant="outlined" fullWidth>
+						<InputLabel id="importance-label">
+							Gravidade do problema
+						</InputLabel>
+						<Select
+							labelId="importance-label"
+							id="importance"
+							value={age}
+							onChange={handleChange}
+							label="Gravidade do Problema"
+						>
+							<MenuItem value={1}>Baixo</MenuItem>
+							<MenuItem value={2}>Medio</MenuItem>
+							<MenuItem value={3}>Grave</MenuItem>
+						</Select>
+					</FormControl>
+				</Grid>
+				<Grid item xs={12} sm={8}>
+					<TextField
+						id="local"
+						label="Localizacao"
+						variant="outlined"
+						fullWidth
+					/>
+				</Grid>
 			</Grid>
 			<Grid item xs={12} style={{ marginBottom: 10 }}>
-				<Button
-					variant="contained"
+				<Fab
+					variant="extended"
 					color="primary"
+					aria-label="add"
 					style={{ marginRight: 10 }}
 				>
 					Enviar
-				</Button>
-				<Button variant="contained" color="secondary">
+				</Fab>
+				<Fab variant="extended" color="secondary" aria-label="add">
 					Cancelar
-				</Button>
+				</Fab>
 			</Grid>
 		</form>
 	);

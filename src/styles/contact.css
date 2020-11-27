@@ -1,0 +1,14 @@
+.inputBox {
+    margin: 10px !important;
+	margin-top: 20px !important;
+}
+
+.titleBox {
+    text-align: center;
+}
+
+.buttonBox {
+    text-align: end;
+	margin: 10px !important;
+	margin-top: 20px !important;
+}
