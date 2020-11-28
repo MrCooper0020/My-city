@@ -7,6 +7,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import FormProblems from "./pages/formProblems";
 import Home from "./pages/home";
 import Contact from "./pages/contact";
+import ListProblems from "./pages/listProblems";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
 				<Route path="/" exact={true} component={Home} />
 				<PrivateRoute path="/add" component={FormProblems} />
 				<Route path="/contact" component={Contact} />
+				<Route path="/list" component={ListProblems} />
 			</Switch>
 			<Footer />
 		</BrowserRouter>

@@ -79,11 +79,6 @@ export default function Header() {
 						<Link to="/">
 							<MenuItem onClick={handleClose}>Home</MenuItem>
 						</Link>
-						<Link to="/add">
-							<MenuItem onClick={handleClose}>
-								Novo Problema
-							</MenuItem>
-						</Link>
 						<Link to="/list">
 							<MenuItem onClick={handleClose}>Problemas</MenuItem>
 						</Link>

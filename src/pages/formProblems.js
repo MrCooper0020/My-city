@@ -10,12 +10,39 @@ import {
 	MenuItem,
 } from "@material-ui/core";
 import "../styles/form.css";
+import Firebase from "../services/firebase-connect";
+import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 export default function FormProblems() {
-	const [age, setAge] = React.useState("");
+	const [name, setName] = React.useState("");
+	const [importance, setImportance] = React.useState("");
+	const [description, setDescription] = React.useState("");
+	const [local, setLocal] = React.useState("");
 
-	const handleChange = (event) => {
-		setAge(event.target.value);
+	const saveProblem = () => {
+		let problemObject = {
+			name,
+			importance,
+			description,
+			local,
+		};
+
+		let uuid = uuidv4();
+
+		Firebase.database()
+			.ref(`Problems/${uuid}`)
+			.set(problemObject)
+			.then(() => {
+				setName("");
+				setImportance("");
+				setDescription("");
+				setLocal("");
+				console.log("mensagem enviada");
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	return (
@@ -28,6 +55,10 @@ export default function FormProblems() {
 					id="name"
 					label="Nome do Problema"
 					variant="outlined"
+					value={name}
+					onChange={(e) => {
+						setName(e.target.value);
+					}}
 					fullWidth
 				/>
 			</Grid>
@@ -36,9 +67,13 @@ export default function FormProblems() {
 					id="description"
 					label="Descricao do problema"
 					variant="outlined"
+					value={description}
 					multiline
 					rows={4}
 					fullWidth
+					onChange={(e) => {
+						setDescription(e.target.value);
+					}}
 				/>
 			</Grid>
 			<Grid container spacing={2} className="multiInputBox">
@@ -50,8 +85,10 @@ export default function FormProblems() {
 						<Select
 							labelId="importance-label"
 							id="importance"
-							value={age}
-							onChange={handleChange}
+							value={importance}
+							onChange={(e) => {
+								setImportance(e.target.value);
+							}}
 							label="Gravidade do Problema"
 						>
 							<MenuItem value={1}>Baixo</MenuItem>
@@ -66,6 +103,10 @@ export default function FormProblems() {
 						label="Localizacao"
 						variant="outlined"
 						fullWidth
+						value={local}
+						onChange={(e) => {
+							setLocal(e.target.value);
+						}}
 					/>
 				</Grid>
 			</Grid>
@@ -75,12 +116,15 @@ export default function FormProblems() {
 					color="primary"
 					aria-label="add"
 					style={{ marginRight: 10 }}
+					onClick={saveProblem}
 				>
 					Enviar
 				</Fab>
-				<Fab variant="extended" color="secondary" aria-label="add">
-					Cancelar
-				</Fab>
+				<Link to="/list">
+					<Fab variant="extended" color="secondary" aria-label="add">
+						Cancelar
+					</Fab>
+				</Link>
 			</Grid>
 		</form>
 	);
