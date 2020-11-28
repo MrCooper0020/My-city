@@ -9,6 +9,7 @@ import {
 	Select,
 	MenuItem,
 } from "@material-ui/core";
+import "../styles/form.css";
 
 export default function FormProblems() {
 	const [age, setAge] = React.useState("");
@@ -18,11 +19,11 @@ export default function FormProblems() {
 	};
 
 	return (
-		<form style={{ margin: 10 }}>
-			<Grid item xs={12} style={{ marginBottom: 10, marginTop: 20 }}>
+		<form className="formContainer">
+			<Grid item xs={12} className="titleBox">
 				<h1>Cadastro de um novo problema</h1>
 			</Grid>
-			<Grid item xs={12} style={{ marginBottom: 10, marginTop: 20 }}>
+			<Grid item xs={12} className="inputBox">
 				<TextField
 					id="name"
 					label="Nome do Problema"
@@ -30,7 +31,7 @@ export default function FormProblems() {
 					fullWidth
 				/>
 			</Grid>
-			<Grid item xs={12} style={{ marginBottom: 10 }}>
+			<Grid item xs={12} className="inputBox">
 				<TextField
 					id="description"
 					label="Descricao do problema"
@@ -40,7 +41,7 @@ export default function FormProblems() {
 					fullWidth
 				/>
 			</Grid>
-			<Grid container spacing={2} style={{ marginBottom: 2 }}>
+			<Grid container spacing={2} className="multiInputBox">
 				<Grid item xs={12} sm={4}>
 					<FormControl variant="outlined" fullWidth>
 						<InputLabel id="importance-label">
@@ -68,7 +69,7 @@ export default function FormProblems() {
 					/>
 				</Grid>
 			</Grid>
-			<Grid item xs={12} style={{ marginBottom: 10 }}>
+			<Grid item xs={12} className="buttonBox">
 				<Fab
 					variant="extended"
 					color="primary"

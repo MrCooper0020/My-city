@@ -1,10 +1,10 @@
 import React from "react";
 import { TextField, Grid, Fab } from "@material-ui/core";
-import "../styles/contact.css";
+import "../styles/form.css";
 
 export default function Contact() {
 	return (
-		<div>
+		<form className="formContainer">
 			<Grid item xs={12} sm={12} className="titleBox">
 				<h1>Contato</h1>
 			</Grid>
@@ -55,6 +55,6 @@ export default function Contact() {
 					Cancelar
 				</Fab>
 			</Grid>
-		</div>
+		</form>
 	);
 }

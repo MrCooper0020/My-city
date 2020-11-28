@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles/App.css";
 import Header from "./widgets/header";
+import Footer from "./widgets/footer";
 import Login from "./pages/login";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import FormProblems from "./pages/formProblems";
@@ -32,6 +33,7 @@ function App() {
 				<PrivateRoute path="/add" component={FormProblems} />
 				<Route path="/contact" component={Contact} />
 			</Switch>
+			<Footer />
 		</BrowserRouter>
 	);
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import {
 	AppBar,
 	Toolbar,
@@ -14,6 +14,15 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
 	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [userLogin, setUserLogin] = React.useState(false);
+
+	function verifyLogin() {
+		if (sessionStorage.getItem("token-key")) {
+			setUserLogin(true);
+		} else {
+			setUserLogin(false);
+		}
+	}
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -22,6 +31,27 @@ export default function Header() {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+
+	const LoginItem = () => {
+		let title = "Logar";
+		let onClick = handleClose;
+		let link = "/login";
+
+		if (userLogin) {
+			title = "Logout";
+			link = "/login";
+		}
+
+		return (
+			<Link to={link}>
+				<MenuItem onClick={onClick}>{title}</MenuItem>
+			</Link>
+		);
+	};
+
+	useLayoutEffect(() => {
+		verifyLogin();
+	}, [userLogin]);
 
 	return (
 		<AppBar position="static">
@@ -48,17 +78,16 @@ export default function Header() {
 						</Link>
 						<Link to="/add">
 							<MenuItem onClick={handleClose}>
-								
 								Novo Problema
-							
 							</MenuItem>
 						</Link>
 						<Link to="/list">
 							<MenuItem onClick={handleClose}>Problemas</MenuItem>
 						</Link>
-						<Link to="/login">
-							<MenuItem onClick={handleClose}>Logar</MenuItem>
+						<Link to="/contact">
+							<MenuItem onClick={handleClose}>Contato</MenuItem>
 						</Link>
+						<LoginItem />
 					</Menu>
 				</div>
 			</Toolbar>

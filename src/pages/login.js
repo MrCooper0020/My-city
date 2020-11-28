@@ -10,12 +10,14 @@ import {
 import MuiAlert from "@material-ui/lab/Alert";
 import "../styles/login.css";
 import Firebase from "../services/firebase-connect";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
 	const [warningMsgActive, setWarningMsgActive] = React.useState(false);
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
 	const [rememberData, setRememberData] = React.useState(false);
+	let history = useHistory();
 
 	function Alert(props) {
 		return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -38,6 +40,8 @@ export default function Login() {
 				}
 
 				sessionStorage.setItem("token-key", dataReturn.user.uid);
+
+				history.push("/");
 			})
 			.catch((error) => {
 				setWarningMsgActive(true);
