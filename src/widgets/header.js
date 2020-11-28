@@ -32,40 +32,43 @@ export default function Header() {
 		setAnchorEl(null);
 	};
 
+	const logout = () => {
+		sessionStorage.removeItem("token-key");
+		verifyLogin();
+		handleClose();
+	};
+
 	const LoginItem = () => {
-		let title = "Logar";
-		let onClick = handleClose;
-		let link = "/login";
-
 		if (userLogin) {
-			title = "Logout";
-			link = "/login";
+			return (
+				<IconButton
+					aria-label="Links"
+					edge="end"
+					color="inherit"
+					onClick={handleClick}
+				>
+					<MoreIcon />
+				</IconButton>
+			);
+		} else {
+			return (
+				<Link to="/login">
+					<Button color="inherit">Login</Button>
+				</Link>
+			);
 		}
-
-		return (
-			<Link to={link}>
-				<MenuItem onClick={onClick}>{title}</MenuItem>
-			</Link>
-		);
 	};
 
 	useLayoutEffect(() => {
 		verifyLogin();
-	}, [userLogin]);
+	}, [setUserLogin]);
 
 	return (
 		<AppBar position="static">
 			<Toolbar className="barContent">
 				<Typography variant="h6">My city</Typography>
 				<div>
-					<IconButton
-						aria-label="display more actions"
-						edge="end"
-						color="inherit"
-						onClick={handleClick}
-					>
-						<MoreIcon />
-					</IconButton>
+					<LoginItem />
 					<Menu
 						id="simple-menu"
 						anchorEl={anchorEl}
@@ -87,7 +90,9 @@ export default function Header() {
 						<Link to="/contact">
 							<MenuItem onClick={handleClose}>Contato</MenuItem>
 						</Link>
-						<LoginItem />
+						<Link to="/login">
+							<MenuItem onClick={logout}>Logout</MenuItem>
+						</Link>
 					</Menu>
 				</div>
 			</Toolbar>
