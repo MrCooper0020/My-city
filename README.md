@@ -1,3 +1,16 @@
+# Info sobre o desenvolvedor
+
+Nome: Matheus Henrique Potrich
+Cursando: Ciências da Computação (4º semestre)
+Instituição: IMED
+
+# Tecnologias/bibliotecas usadas
+
+* React.js ( https://pt-br.reactjs.org/ )
+* Material-UI ( https://material-ui.com/ )
+* FireBase ( https://firebase.google.com/ )
+* Google-map-react ( https://www.npmjs.com/package/google-map-react )
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
