@@ -1,11 +1,13 @@
 # Info sobre o desenvolvedor
 
-Nome: Matheus Henrique Potrich
-Cursando: Ciências da Computação (4º semestre)
-Instituição: IMED
+* Nome: Matheus Henrique Potrich
+* Cursando: Ciências da Computação (4º semestre)
+* Instituição: IMED
 
 # Tecnologias/bibliotecas usadas
 
+* Node.js ( https://nodejs.org/en/ )
+* Yarn ( https://yarnpkg.com/ )
 * React.js ( https://pt-br.reactjs.org/ )
 * Material-UI ( https://material-ui.com/ )
 * FireBase ( https://firebase.google.com/ )
