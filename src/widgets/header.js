@@ -21,7 +21,6 @@ export default function Header(props) {
 
 	const verifyLogin = () => {
 		props.verifyUser();
-		console.log(props.user);
 
 		if (props.user != null) {
 			setUserLogin(props.user);

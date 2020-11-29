@@ -52,9 +52,10 @@ export default function FormProblems() {
 					.set(problemObject)
 					.then(() => {
 						setName("");
-						setImportance("");
+						setImportance(1);
 						setDescription("");
 						setLocal("");
+						setIsRepair(true);
 						messagePopup(true, "Problema enviado com sucesso!");
 					})
 					.catch((err) => {
