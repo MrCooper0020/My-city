@@ -10,6 +10,7 @@ import Contact from "./pages/contact";
 import ListProblems from "./pages/listProblems";
 import listMessage from "./pages/listMessage";
 import Firebase from "./services/firebase-connect";
+import Register from "./pages/register";
 
 function App() {
 	const [user, setUser] = React.useState(null);
@@ -44,12 +45,17 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<Header key={`header-${user}`} user={user} verifyUser={verifyUser} />
+			<Header
+				key={`header-${user}`}
+				user={user}
+				verifyUser={verifyUser}
+			/>
 			<Switch>
 				<Route path="/login">
 					<Login verifyUser={verifyUser} />
 				</Route>
 				<Route path="/" exact={true} component={Home} />
+				<Route path="/register" component={Register} />
 				<PrivateRoute path="/add" component={FormProblems} />
 				<PrivateRoute path="/messages" component={listMessage} />
 				<PrivateRoute path="/contact" component={Contact} />

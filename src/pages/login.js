@@ -11,6 +11,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import "../styles/login.css";
 import Firebase from "../services/firebase-connect";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Login(props) {
 	const [warningMsgActive, setWarningMsgActive] = React.useState(false);
@@ -48,7 +49,7 @@ export default function Login(props) {
 			})
 			.catch((error) => {
 				setWarningMsgActive(true);
-				console.log(error);;
+				console.log(error);
 			});
 	}
 
@@ -114,9 +115,11 @@ export default function Login(props) {
 				>
 					Entrar
 				</Button>
-				<Button variant="contained" size="large" color="primary">
-					Cadastrar
-				</Button>
+				<Link to="/register">
+					<Button variant="contained" size="large" color="primary">
+						Cadastrar
+					</Button>
+				</Link>
 			</Grid>
 			<Snackbar open={warningMsgActive}>
 				<Alert severity="error">Email ou senha estão incorretas!</Alert>
