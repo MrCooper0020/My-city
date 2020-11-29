@@ -119,7 +119,7 @@ export default function Login(props) {
 				</Button>
 			</Grid>
 			<Snackbar open={warningMsgActive}>
-				<Alert severity="error">Email ou senha estao incorretas!</Alert>
+				<Alert severity="error">Email ou senha estão incorretas!</Alert>
 			</Snackbar>
 		</form>
 	);

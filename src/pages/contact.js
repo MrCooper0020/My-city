@@ -35,10 +35,10 @@ export default function Contact() {
 				setEmail("");
 				setSubject("");
 				setMessage("");
-				messagePopup(true, "Problema enviado!");
+				messagePopup(true, "Mensagem enviado!");
 			})
 			.catch((err) => {
-				messagePopup(true, "Erro ao enviar Problema!", false);
+				messagePopup(true, "Erro ao enviar a mensagem!", false);
 			});
 	};
 

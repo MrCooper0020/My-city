@@ -5,6 +5,7 @@
 * Nome: Matheus Henrique Potrich
 * Cursando: Ciências da Computação (4º semestre)
 * Instituição: IMED
+* Email: matheushp.com@gmail.com
 
 # Tecnologias/bibliotecas usadas
 
@@ -14,6 +15,7 @@
 * Material-UI ( https://material-ui.com/ )
 * FireBase ( https://firebase.google.com/ )
 * Google-map-react ( https://www.npmjs.com/package/google-map-react )
+* React-geocode ( https://www.npmjs.com/package/react-geocode )
 
 # Getting Started with Create React App
 

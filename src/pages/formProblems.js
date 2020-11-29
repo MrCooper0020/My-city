@@ -55,7 +55,7 @@ export default function FormProblems() {
 						setImportance("");
 						setDescription("");
 						setLocal("");
-						messagePopup(true, "Problema enviado!");
+						messagePopup(true, "Problema enviado com sucesso!");
 					})
 					.catch((err) => {
 						messagePopup(true, "Erro ao enviar Problema!", false);
@@ -101,7 +101,7 @@ export default function FormProblems() {
 			<Grid item xs={12} className="inputBox">
 				<TextField
 					id="description"
-					label="Descricao do problema"
+					label="Descrição do problema"
 					variant="outlined"
 					value={description}
 					multiline
@@ -151,7 +151,7 @@ export default function FormProblems() {
 				<Grid item xs={12} sm={6}>
 					<TextField
 						id="local"
-						label="Localizacao"
+						label="Localização"
 						variant="outlined"
 						fullWidth
 						value={local}

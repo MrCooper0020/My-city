@@ -29,7 +29,7 @@ export default function ListProblems() {
 			return <Chip size="small" className="warningLow" label="Baixo" />;
 		} else if (props.type === 2) {
 			return (
-				<Chip size="small" className="warningMedium" label="Medio" />
+				<Chip size="small" className="warningMedium" label="Médio" />
 			);
 		} else if (props.type === 3) {
 			return <Chip size="small" className="error" label="Grave" />;
@@ -38,7 +38,7 @@ export default function ListProblems() {
 
 	const TicketStats = (props) => {
 		if (props.type) {
-			return <Chip size="small" className="success" label="Concluido" />;
+			return <Chip size="small" className="success" label="Concluído" />;
 		} else {
 			return (
 				<Chip size="small" className="warningLow" label="Pendente" />
@@ -138,8 +138,8 @@ export default function ListProblems() {
 									<Typography color="textSecondary">
 										Tipo:{" "}
 										{problem.isRepair
-											? "Manutencao"
-											: "Adicao"}
+											? "Manutenção"
+											: "Adição"}
 									</Typography>
 									<Typography color="textSecondary">
 										Local: {problem.local}
@@ -149,7 +149,7 @@ export default function ListProblems() {
 										color="textSecondary"
 										component="p"
 									>
-										Descricao: {problem.description}
+										Descrição: {problem.description}
 									</Typography>
 								</CardContent>
 								<CardActions
