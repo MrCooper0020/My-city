@@ -108,8 +108,12 @@ export default function Login() {
 					size="large"
 					color="primary"
 					onClick={() => loginAccount()}
+					style={{  marginRight: 5  }}
 				>
 					Entrar
+				</Button>
+				<Button variant="contained" size="large" color="primary">
+					Cadastrar
 				</Button>
 			</Grid>
 			<Snackbar open={warningMsgActive}>
