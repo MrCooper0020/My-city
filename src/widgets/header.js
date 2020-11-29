@@ -11,10 +11,13 @@ import {
 import "../styles/header.css";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { Link } from "react-router-dom";
+import Firebase from "../services/firebase-connect";
+import { useHistory } from "react-router-dom";
 
 export default function Header() {
 	const [userLogin, setUserLogin] = React.useState(false);
 	const [menuOpen, setMenuOpen] = React.useState(false);
+	let history = useHistory();
 
 	function verifyLogin() {
 		if (sessionStorage.getItem("token-key")) {
@@ -26,6 +29,14 @@ export default function Header() {
 
 	const logout = () => {
 		sessionStorage.removeItem("token-key");
+		Firebase.auth()
+			.signOut()
+			.then(() => {
+				history.push("/");
+			})
+			.catch(() => {
+				history.push("/");
+			});
 		verifyLogin();
 		setMenuOpen(false);
 	};

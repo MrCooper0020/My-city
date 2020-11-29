@@ -41,7 +41,9 @@ export default function Login() {
 
 				sessionStorage.setItem("token-key", dataReturn.user.uid);
 
-				history.push("/");
+				setTimeout(() => {
+					history.push("/");
+				}, 500);
 			})
 			.catch((error) => {
 				setWarningMsgActive(true);
