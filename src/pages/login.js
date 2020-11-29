@@ -12,7 +12,7 @@ import "../styles/login.css";
 import Firebase from "../services/firebase-connect";
 import { useHistory } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
 	const [warningMsgActive, setWarningMsgActive] = React.useState(false);
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
@@ -42,11 +42,13 @@ export default function Login() {
 				sessionStorage.setItem("token-key", dataReturn.user.uid);
 
 				setTimeout(() => {
+					props.verifyUser();
 					history.push("/");
 				}, 500);
 			})
 			.catch((error) => {
 				setWarningMsgActive(true);
+				console.log(error);;
 			});
 	}
 
@@ -108,7 +110,7 @@ export default function Login() {
 					size="large"
 					color="primary"
 					onClick={() => loginAccount()}
-					style={{  marginRight: 5  }}
+					style={{ marginRight: 5 }}
 				>
 					Entrar
 				</Button>

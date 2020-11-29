@@ -14,18 +14,21 @@ import { Link } from "react-router-dom";
 import Firebase from "../services/firebase-connect";
 import { useHistory } from "react-router-dom";
 
-export default function Header() {
-	const [userLogin, setUserLogin] = React.useState(false);
+export default function Header(props) {
+	const [userLogin, setUserLogin] = React.useState(props.user);
 	const [menuOpen, setMenuOpen] = React.useState(false);
 	let history = useHistory();
 
-	function verifyLogin() {
-		if (sessionStorage.getItem("token-key")) {
-			setUserLogin(true);
+	const verifyLogin = () => {
+		props.verifyUser();
+		console.log(props.user);
+
+		if (props.user != null) {
+			setUserLogin(props.user);
 		} else {
-			setUserLogin(false);
+			setUserLogin(null);
 		}
-	}
+	};
 
 	const logout = () => {
 		sessionStorage.removeItem("token-key");

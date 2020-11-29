@@ -12,7 +12,6 @@ import listMessage from "./pages/listMessage";
 import Firebase from "./services/firebase-connect";
 
 function App() {
-
 	const [user, setUser] = React.useState(null);
 
 	const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -29,21 +28,27 @@ function App() {
 		);
 	};
 
-	useLayoutEffect(() => {
-		Firebase.auth().onAuthStateChanged((user) => {
-			if (user != null) {
-				setUser(user.uid);
+	function verifyUser() {
+		Firebase.auth().onAuthStateChanged((userFirebase) => {
+			if (userFirebase != null) {
+				setUser(userFirebase.uid);
 			} else {
 				setUser(null);
 			}
 		});
+	}
+
+	useLayoutEffect(() => {
+		verifyUser();
 	}, []);
 
 	return (
 		<BrowserRouter>
-			<Header />
+			<Header key={`header-${user}`} user={user} verifyUser={verifyUser} />
 			<Switch>
-				<Route path="/login" component={Login} />
+				<Route path="/login">
+					<Login verifyUser={verifyUser} />
+				</Route>
 				<Route path="/" exact={true} component={Home} />
 				<PrivateRoute path="/add" component={FormProblems} />
 				<PrivateRoute path="/messages" component={listMessage} />
