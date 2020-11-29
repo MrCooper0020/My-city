@@ -3,7 +3,7 @@ import "./styles/App.css";
 import Header from "./widgets/header";
 import Footer from "./widgets/footer";
 import Login from "./pages/login";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { HashRouter as BrowserRouter, Switch, Route } from "react-router-dom";
 import FormProblems from "./pages/formProblems";
 import Home from "./pages/home";
 import Contact from "./pages/contact";
