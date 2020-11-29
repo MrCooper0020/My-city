@@ -15,39 +15,56 @@ import Firebase from "../services/firebase-connect";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
 import MuiAlert from "@material-ui/lab/Alert";
+import Geocode from "react-geocode";
 
 export default function FormProblems() {
 	const [name, setName] = React.useState("");
-	const [importance, setImportance] = React.useState("");
+	const [importance, setImportance] = React.useState(1);
 	const [description, setDescription] = React.useState("");
 	const [local, setLocal] = React.useState("");
+	const [isRepair, setIsRepair] = React.useState(true);
 	const [msgOpen, setMsgOpen] = React.useState(false);
 	const [msgText, setMsgText] = React.useState("");
 	const [msgErrorType, setMsgErrorType] = React.useState(false);
 
 	const saveProblem = () => {
-		let problemObject = {
-			name,
-			importance,
-			description,
-			local,
-		};
+		Geocode.setApiKey("AIzaSyDvdkyqaq8Cu2fVp_9EQNNnhMoDmT-GXt4");
 
-		let uuid = uuidv4();
+		Geocode.fromAddress(local).then(
+			(response) => {
+				const { lat, lng } = response.results[0].geometry.location;
 
-		Firebase.database()
-			.ref(`Problems/${uuid}`)
-			.set(problemObject)
-			.then(() => {
-				setName("");
-				setImportance("");
-				setDescription("");
-				setLocal("");
-				messagePopup(true, "Problema enviado!");
-			})
-			.catch((err) => {
-				messagePopup(true, "Erro ao enviar Problema!", false);
-			});
+				let problemObject = {
+					name,
+					importance,
+					description,
+					local,
+					isRepair,
+					isComplete: false,
+					lat,
+					lng,
+				};
+
+				let uuid = uuidv4();
+
+				Firebase.database()
+					.ref(`Problems/${uuid}`)
+					.set(problemObject)
+					.then(() => {
+						setName("");
+						setImportance("");
+						setDescription("");
+						setLocal("");
+						messagePopup(true, "Problema enviado!");
+					})
+					.catch((err) => {
+						messagePopup(true, "Erro ao enviar Problema!", false);
+					});
+			},
+			(error) => {
+				console.error(error);
+			},
+		);
 	};
 
 	const messagePopup = (open, text, error = false) => {
@@ -96,11 +113,9 @@ export default function FormProblems() {
 				/>
 			</Grid>
 			<Grid container spacing={2} className="multiInputBox">
-				<Grid item xs={12} sm={4}>
+				<Grid item xs={12} sm={3}>
 					<FormControl variant="outlined" fullWidth>
-						<InputLabel id="importance-label">
-							Gravidade do problema
-						</InputLabel>
+						<InputLabel id="importance-label">Gravidade</InputLabel>
 						<Select
 							labelId="importance-label"
 							id="importance"
@@ -108,7 +123,7 @@ export default function FormProblems() {
 							onChange={(e) => {
 								setImportance(e.target.value);
 							}}
-							label="Gravidade do Problema"
+							label="Gravidade"
 						>
 							<MenuItem value={1}>Baixo</MenuItem>
 							<MenuItem value={2}>Medio</MenuItem>
@@ -116,7 +131,24 @@ export default function FormProblems() {
 						</Select>
 					</FormControl>
 				</Grid>
-				<Grid item xs={12} sm={8}>
+				<Grid item xs={12} sm={3}>
+					<FormControl variant="outlined" fullWidth>
+						<InputLabel id="type-label">Tipo</InputLabel>
+						<Select
+							labelId="type-label"
+							id="isRepair"
+							value={isRepair}
+							onChange={(e) => {
+								setIsRepair(e.target.value);
+							}}
+							label="Tipo"
+						>
+							<MenuItem value={true}>Manutencao</MenuItem>
+							<MenuItem value={false}>Pedido</MenuItem>
+						</Select>
+					</FormControl>
+				</Grid>
+				<Grid item xs={12} sm={6}>
 					<TextField
 						id="local"
 						label="Localizacao"

@@ -81,6 +81,11 @@ export default function Header() {
 								Contato
 							</MenuItem>
 						</Link>
+						<Link to="/messages">
+							<MenuItem onClick={() => setMenuOpen(false)}>
+								Recados
+							</MenuItem>
+						</Link>
 						<Link to="/login">
 							<MenuItem onClick={logout}>Logout</MenuItem>
 						</Link>

@@ -1,0 +1,23 @@
+.success {
+    background: #357a38 !important;
+    color: white !important;
+    margin-right: 10px !important;
+}
+
+.warningMedium {
+    background: #f4511e !important;
+    color: white !important;
+    margin-right: 10px !important;
+}
+
+.warningLow {
+    background: #fdd835 !important;
+    color: black !important;
+    margin-right: 10px !important;
+}
+
+.error {
+    background: #d50000 !important;
+    color: white !important;
+    margin-right: 10px !important;
+}

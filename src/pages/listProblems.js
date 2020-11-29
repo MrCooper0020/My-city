@@ -12,24 +12,37 @@ import {
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
+import CheckIcon from "@material-ui/icons/Check";
 import { Link } from "react-router-dom";
+import "../styles/list.css";
 
 export default function ListProblems() {
 	const [list, setList] = React.useState([]);
 
 	const Ticket = (props) => {
 		if (props.type === 1) {
-			return <Chip size="small" label="Baixo" />;
+			return <Chip size="small" className="warningLow" label="Baixo" />;
 		} else if (props.type === 2) {
-			return <Chip size="small" label="Medio" />;
+			return (
+				<Chip size="small" className="warningMedium" label="Medio" />
+			);
 		} else if (props.type === 3) {
-			return <Chip color="secondary" size="small" label="Grave" />;
+			return <Chip size="small" className="error" label="Grave" />;
+		}
+	};
+
+	const TicketStats = (props) => {
+		if (props.type) {
+			return <Chip size="small" className="success" label="Concluido" />;
+		} else {
+			return (
+				<Chip size="small" className="warningLow" label="Pendente" />
+			);
 		}
 	};
 
 	const removeProblem = (problem) => {
 		Firebase.database().ref(`/Problems/${problem.uuid}`).remove();
-		console.log(problem);
 	};
 
 	useLayoutEffect(() => {
@@ -76,13 +89,13 @@ export default function ListProblems() {
 										component="h2"
 									>
 										<Ticket type={problem.importance} />
+										<TicketStats type={problem.isComplete} />
 									</Typography>
-									<Typography
-										variant="h5"
-										component="h2"
-									></Typography>
 									<Typography color="textSecondary">
-										Local: {problem.description}
+										Tipo: {(problem.isRepair) ? "Manutencao" : "Adicao"}
+									</Typography>
+									<Typography color="textSecondary">
+										Local: {problem.local}
 									</Typography>
 									<Typography
 										variant="body2"
@@ -95,6 +108,15 @@ export default function ListProblems() {
 								<CardActions
 									style={{ padding: 16, paddingTop: 0 }}
 								>
+									<Button
+										variant="contained"
+										color="primary"
+										size="small"
+										startIcon={<CheckIcon />}
+										className="success"
+									>
+										Resolvido
+									</Button>
 									<Button
 										variant="contained"
 										color="secondary"
