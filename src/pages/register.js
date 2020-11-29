@@ -1,19 +1,11 @@
 import React, { useLayoutEffect } from "react";
-import {
-	TextField,
-	Button,
-	Grid,
-	FormControlLabel,
-	Switch,
-	Snackbar,
-} from "@material-ui/core";
+import { TextField, Button, Grid } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 import "../styles/login.css";
 import Firebase from "../services/firebase-connect";
 import { useHistory } from "react-router-dom";
 
 export default function Register() {
-	const [warningMsgActive, setWarningMsgActive] = React.useState(false);
 	const [email, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
 	let history = useHistory();
