@@ -8,17 +8,22 @@ import {
 	InputLabel,
 	Select,
 	MenuItem,
+	Snackbar,
 } from "@material-ui/core";
 import "../styles/form.css";
 import Firebase from "../services/firebase-connect";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
+import MuiAlert from "@material-ui/lab/Alert";
 
 export default function FormProblems() {
 	const [name, setName] = React.useState("");
 	const [importance, setImportance] = React.useState("");
 	const [description, setDescription] = React.useState("");
 	const [local, setLocal] = React.useState("");
+	const [msgOpen, setMsgOpen] = React.useState(false);
+	const [msgText, setMsgText] = React.useState("");
+	const [msgErrorType, setMsgErrorType] = React.useState(false);
 
 	const saveProblem = () => {
 		let problemObject = {
@@ -38,12 +43,26 @@ export default function FormProblems() {
 				setImportance("");
 				setDescription("");
 				setLocal("");
-				console.log("mensagem enviada");
+				messagePopup(true, "Problema enviado!");
 			})
 			.catch((err) => {
-				console.log(err);
+				messagePopup(true, "Erro ao enviar Problema!", false);
 			});
 	};
+
+	const messagePopup = (open, text, error = false) => {
+		setMsgOpen(open);
+		setMsgText(text);
+		setMsgErrorType(error);
+
+		setTimeout(() => {
+			setMsgOpen(false);
+		}, 5000);
+	};
+
+	function Alert(props) {
+		return <MuiAlert elevation={6} variant="filled" {...props} />;
+	}
 
 	return (
 		<form className="formContainer">
@@ -126,6 +145,11 @@ export default function FormProblems() {
 					</Fab>
 				</Link>
 			</Grid>
+			<Snackbar open={msgOpen}>
+				<Alert severity={msgErrorType ? "error" : "success"}>
+					{msgText}
+				</Alert>
+			</Snackbar>
 		</form>
 	);
 }

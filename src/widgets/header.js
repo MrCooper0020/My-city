@@ -3,18 +3,18 @@ import {
 	AppBar,
 	Toolbar,
 	Typography,
-	Menu,
 	MenuItem,
 	IconButton,
 	Button,
+	Drawer,
 } from "@material-ui/core";
 import "../styles/header.css";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { Link } from "react-router-dom";
 
 export default function Header() {
-	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [userLogin, setUserLogin] = React.useState(false);
+	const [menuOpen, setMenuOpen] = React.useState(false);
 
 	function verifyLogin() {
 		if (sessionStorage.getItem("token-key")) {
@@ -24,18 +24,10 @@ export default function Header() {
 		}
 	}
 
-	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
-
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
-
 	const logout = () => {
 		sessionStorage.removeItem("token-key");
 		verifyLogin();
-		handleClose();
+		setMenuOpen(false);
 	};
 
 	const LoginItem = () => {
@@ -45,7 +37,7 @@ export default function Header() {
 					aria-label="Links"
 					edge="end"
 					color="inherit"
-					onClick={handleClick}
+					onClick={() => setMenuOpen(true)}
 				>
 					<MoreIcon />
 				</IconButton>
@@ -61,7 +53,7 @@ export default function Header() {
 
 	useLayoutEffect(() => {
 		verifyLogin();
-	}, [setUserLogin]);
+	}, []);
 
 	return (
 		<AppBar position="static">
@@ -69,26 +61,30 @@ export default function Header() {
 				<Typography variant="h6">My city</Typography>
 				<div>
 					<LoginItem />
-					<Menu
-						id="simple-menu"
-						anchorEl={anchorEl}
-						keepMounted
-						open={Boolean(anchorEl)}
-						onClose={handleClose}
+					<Drawer
+						anchor="right"
+						open={menuOpen}
+						onClose={() => setMenuOpen(false)}
 					>
 						<Link to="/">
-							<MenuItem onClick={handleClose}>Home</MenuItem>
+							<MenuItem onClick={() => setMenuOpen(false)}>
+								Home
+							</MenuItem>
 						</Link>
 						<Link to="/list">
-							<MenuItem onClick={handleClose}>Problemas</MenuItem>
+							<MenuItem onClick={() => setMenuOpen(false)}>
+								Problemas
+							</MenuItem>
 						</Link>
 						<Link to="/contact">
-							<MenuItem onClick={handleClose}>Contato</MenuItem>
+							<MenuItem onClick={() => setMenuOpen(false)}>
+								Contato
+							</MenuItem>
 						</Link>
 						<Link to="/login">
 							<MenuItem onClick={logout}>Logout</MenuItem>
 						</Link>
-					</Menu>
+					</Drawer>
 				</div>
 			</Toolbar>
 		</AppBar>
