@@ -76,11 +76,6 @@ export default function Header() {
 								Problemas
 							</MenuItem>
 						</Link>
-						<Link to="/contact">
-							<MenuItem onClick={() => setMenuOpen(false)}>
-								Contato
-							</MenuItem>
-						</Link>
 						<Link to="/messages">
 							<MenuItem onClick={() => setMenuOpen(false)}>
 								Recados

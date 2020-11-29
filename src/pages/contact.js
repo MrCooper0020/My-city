@@ -4,6 +4,7 @@ import "../styles/form.css";
 import { v4 as uuidv4 } from "uuid";
 import MuiAlert from "@material-ui/lab/Alert";
 import Firebase from "../services/firebase-connect";
+import { Link } from "react-router-dom";
 
 export default function Contact() {
 
@@ -112,6 +113,11 @@ export default function Contact() {
 				>
 					Enviar
 				</Fab>
+				<Link to="/messages">
+					<Fab variant="extended" color="secondary" aria-label="add">
+						Cancelar
+					</Fab>
+				</Link>
 			</Grid>
 			<Snackbar open={msgOpen}>
 				<Alert severity={msgErrorType ? "error" : "success"}>

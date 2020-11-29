@@ -8,6 +8,7 @@ import FormProblems from "./pages/formProblems";
 import Home from "./pages/home";
 import Contact from "./pages/contact";
 import ListProblems from "./pages/listProblems";
+import listMessage from "./pages/listMessage";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
 				<Route path="/login" component={Login} />
 				<Route path="/" exact={true} component={Home} />
 				<PrivateRoute path="/add" component={FormProblems} />
+				<PrivateRoute path="/messages" component={listMessage} />
 				<Route path="/contact" component={Contact} />
 				<Route path="/list" component={ListProblems} />
 			</Switch>
